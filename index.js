@@ -161,7 +161,7 @@ const reportToAbuseIPDb = async (honeypot, { srcIp, dpt = 'N/A', service = 'N/A'
 	}
 
 	try {
-		const { data: res } = await axios.post('http://127.0.0.1:4070/api/v1/report', {
+		const { data: res } = await axios.post('https://api.netcatdb.com/api/v1/report', {
 			ip: srcIp,
 			categories,
 			comment,
