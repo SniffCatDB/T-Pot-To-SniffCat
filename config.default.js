@@ -1,24 +1,32 @@
+const os = require('node:os');
+const resolvePath = p => p.replace(/^~(?=$|\/|\\)/, os.homedir());
+
 exports.MAIN = {
-	// My Server
-	DIONAEA_LOG_FILE: '~/tpotce/data/dionaea/log/dionaea.json',
-	HONEYTRAP_LOG_FILE: '~/tpotce/data/honeytrap/log/attackers.json',
-	COWRIE_LOG_FILE: '~/tpotce/data/cowrie/log/cowrie.json',
-	CACHE_FILE: '/tmp/tpot-netcatdb-reporter.cache',
+	/* --------------------------- Server --------------------------- */
+	SERVER_ID: null, // Server identifier (e.g., 'hp-terminal', 'pl-cluster', 'de1'). Use 'development' for testing only. 'production' has no effect. Use null to leave it unset.
+	EXTENDED_LOGS: false, // Specifies whether the script should display additional information in the logs.
+	COWRIE_LOG_FILE: resolvePath('~/tpotce/data/cowrie/log/cowrie.json'),
+	DIONAEA_LOG_FILE: resolvePath('~/tpotce/data/dionaea/log/dionaea.json'),
+	HONEYTRAP_LOG_FILE: resolvePath('~/tpotce/data/honeytrap/log/attackers.json'),
+	LOG_IP_HISTORY_ENABLED: false, // Saves the collected data in .txt files inside separate subfolders named after IP addresses.
+	LOG_IP_HISTORY_DIR: './data', // Where should the collected data be saved? This folder will store subfolders named after IP addresses.
+	CACHE_FILE: './tmp/tpot-sniffcat-reporter.cache',
 
-	SERVER_ID: null, // The server name that will be visible in the reports (e.g., 'homeserver1'). If you don't want to define it, leave the value as null.
-	DEBUG_MODE: false,
-	IP_REFRESH_SCHEDULE: '0 */6 * * *', // CRON: How often should the script check the IP address assigned by the ISP to prevent accidental self-reporting? Default: every 6 hours
-	IPv6_SUPPORT: true, // Specifies whether the device has been assigned an IPv6 address.
+	/* --------------------------- Network --------------------------- */
+	IP_ASSIGNMENT: 'dynamic', // IP assignment type: 'static' for a fixed IP, 'dynamic' if it may change over time.
+	IP_REFRESH_SCHEDULE: '0 */6 * * *', // Cron schedule for checking the public IP assigned by your ISP. Used only with dynamic IPs to prevent accidental self-reporting. If IP_ASSIGNMENT is set to 'static', the script will check your IP only once.
+	IPv6_SUPPORT: true, // IPv6 support: true if the device has a globally routable address assigned by the ISP.
 
-	// Reporting
-	NETCATDB_API_KEY: '', // Secret API key for AbuseIPDB.
-	IP_REPORT_COOLDOWN: 12 * 60 * 60 * 1000, // The minimum time (12 hours) that must pass before reporting the same IP address again.
+	/* --------------------------- Reports --------------------------- */
+	SNIFFCAT_API_KEY: '', // https://sniffcat.com/api
+	IP_REPORT_COOLDOWN: 6 * 60 * 60 * 1000, // Minimum time between reports of the same IP. Must be >= 15 minutes. Do not set values like 1 hour, as it wouldn't make sense due to rate limits.
 
-	// Automatic Updates
-	AUTO_UPDATE_ENABLED: true, // Do you want the script to automatically update to the latest version using 'git pull'? (true = enabled, false = disabled)
-	AUTO_UPDATE_SCHEDULE: '0 5 * * *', // CRON: Schedule for automatic script updates. Default: every day at 05:00
+	/* --------------------------- Automatic Updates --------------------------- */
+	AUTO_UPDATE_ENABLED: false, // True to enable auto-update via 'git pull', false to disable.
+	AUTO_UPDATE_SCHEDULE: '0 15,17,18,20 * * *', // Cron schedule for automatic script updates. Default: every day at 15:00, 17:00, 18:00, 20:00
 
-	// Discord Webhooks
-	DISCORD_WEBHOOKS_ENABLED: false, // Should the script send webhooks? They will contain error reports, daily summaries related to reports, etc.
-	DISCORD_WEBHOOKS_URL: '', // Webhook URL.
+	/* --------------------------- Discord Webhooks --------------------------- */
+	DISCORD_WEBHOOK_ENABLED: false, // Enables sending Discord webhooks with error reports, execution status, and other events.
+	DISCORD_WEBHOOK_URL: '',
+	DISCORD_WEBHOOK_USERNAME: 'SERVER_ID', // Username shown as the message author. Use null for default. 'SERVER_ID' will resolve to this.MAIN.SERVER_ID.
 };
