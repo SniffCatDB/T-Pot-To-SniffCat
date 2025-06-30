@@ -1,14 +1,14 @@
 module.exports = {
 	apps: [{
-		name: 'tpot-abuseipdb',
+		name: 'tpot-sniffcat',
 		script: './index.js',
 
 		// Logging configuration
 		log_date_format: 'HH:mm:ss.SSS DD.MM.YYYY',
 		merge_logs: true,
-		log_file: '~/log/tpot-abuseipdb/combined.log',
-		out_file: '~/log/tpot-abuseipdb/out.log',
-		error_file: '~/log/tpot-abuseipdb/error.log',
+		log_file: '~/log/tpot-sniffcat/combined.log',
+		out_file: '~/log/tpot-sniffcat/out.log',
+		error_file: '~/log/tpot-sniffcat/error.log',
 
 		// Application restart policy settings
 		wait_ready: true,
