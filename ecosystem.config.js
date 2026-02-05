@@ -6,9 +6,9 @@ module.exports = {
 		// Logging configuration
 		log_date_format: 'HH:mm:ss.SSS DD.MM.YYYY',
 		merge_logs: true,
-		log_file: '~/log/tpot-sniffcat/combined.log',
-		out_file: '~/log/tpot-sniffcat/out.log',
-		error_file: '~/log/tpot-sniffcat/error.log',
+		log_file: '~/logs/tpot-sniffcat/combined.log',
+		out_file: '~/logs/tpot-sniffcat/out.log',
+		error_file: '~/logs/tpot-sniffcat/error.log',
 
 		// Application restart policy settings
 		wait_ready: true,
