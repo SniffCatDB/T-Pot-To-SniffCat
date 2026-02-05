@@ -95,7 +95,7 @@ const reportIp = async (honeypot, { srcIp, dpt = 'N/A', proto = 'N/A', timestamp
 		markIPAsReported(srcIp);
 		await saveReportedIPs();
 
-		logger.success(`${honeypot} -> Reported ${srcIp} [${dpt}/${proto}] | Categories: ${categories} | Abuse: ${res.data.abuseConfidenceScore}%`);
+		logger.success(`${honeypot} -> Reported ${srcIp} [${dpt}/${proto}] | Categories: ${categories} | Abuse: ${res.abuseConfidenceScore}%`);
 	} catch (err) {
 		const status = err.response?.status;
 
@@ -115,7 +115,7 @@ const reportIp = async (honeypot, { srcIp, dpt = 'N/A', proto = 'N/A', timestamp
 					await saveBufferToFile();
 					logger.success(`${honeypot} -> Queued ${srcIp} for bulk report due to rate limit`);
 				} else {
-					logger.warn(`${honeypot} -> Buffer full (${MAX_BUFFER_SIZE} IPs). Cannot queue ${srcIp}`);
+					logger.warn(`${honeypot} -> Buffer overflow (${MAX_BUFFER_SIZE} IPs), unable to queue ${srcIp}`);
 				}
 			}
 		} else {
