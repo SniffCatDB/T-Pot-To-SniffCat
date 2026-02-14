@@ -244,4 +244,4 @@ User-Agent: Go-http-client/1.1; 13261 [2] TCP
 
 
 ## 📄 License
-This project is licensed under the GNU General Public License v3.0 – see the [LICENSE](LICENSE) file for details.
+Copyright © 2025-2026 [Sefinek](https://sefinek.net)
