@@ -243,5 +243,5 @@ User-Agent: Go-http-client/1.1; 13261 [2] TCP
 ```
 
 
-## 📄 License
+## 📄 [GPL-3.0 License](LICENSE)
 Copyright © 2025-2026 [Sefinek](https://sefinek.net)
