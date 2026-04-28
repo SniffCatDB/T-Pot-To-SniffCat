@@ -85,7 +85,7 @@ Then open `config.js` in your favorite text editor (e.g. `mcedit`, `nano`) and c
 > You must obtain an API key from [SniffCat](https://sniffcat.com/api).
 
 ```js
-SniffCat_API_KEY: 'your-api-key'  // Obtain from https://sniffcat.com/api
+SniffCat_API_KEY: 'your-api-key' // Obtain from https://sniffcat.com/api
 ```
 
 #### 🖥️ Server Settings
