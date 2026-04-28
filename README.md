@@ -13,7 +13,7 @@ If you found this project useful, consider giving it a star! It will greatly mot
 
 ## 🎯 Key Features
 ✅ Support for **Cowrie**, **Dionaea**, and **Honeytrap** honeypots (more planned).  
-✅ Intelligent reporting mechanism with a minimum **20-minute cooldown**, effectively eliminating duplicate reports.  
+✅ Reporting mechanism with a minimum **20-minute cooldown**, preventing multiple reports of the same IP address.  
 ✅ Automatic assignment of abuse categories based on the detected attack type.  
 ✅ Full support for bulk reporting when API limits are reached.  
 ✅ Protection mechanisms against buffer overflow and data loss.  
@@ -113,7 +113,7 @@ IPv6_SUPPORT: true                   // true if your ISP provides IPv6
 #### ⏱️ Report Management
 ```js
 IP_REPORT_COOLDOWN: 6 * 60 * 60 * 1000 // Time between reports for the same IP (default: 6 hours)
-                                       // NOTE: Minimum is 15 minutes (900000 ms) – SniffCat requirement
+                                       // NOTE: Minimum is 20 minutes (1200000 ms) – SniffCat requirement
 ```
 
 > [!IMPORTANT]
