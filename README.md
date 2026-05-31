@@ -20,7 +20,7 @@ The script monitors logs, analyzes attack attempts, and reports them automatical
 ✅ Automatic retry of failed API requests.  
 ✅ Full support for **IPv4** and **IPv6** addresses.  
 ✅ Automatic skipping of **UDP** traffic and special-purpose IP addresses (`local`, `private`, `multicast`).  
-✅ Maintain a `whitelist.txt` file with IPs that should never be reported (e.g., your home IP when running on a VPS).
+✅ Maintain a `whitelist.txt` file with IPs that should never be reported (e.g., your home IP when running on a VPS).  
 ✅ Optional **Discord** notifications with attack alerts and daily statistics.  
 ✅ Optional logging of IP activity history to files.  
 ✅ Automatic project updates via **Git** using a **cron** schedule.  
@@ -85,7 +85,7 @@ Then open `config.js` in your favorite text editor (e.g. `mcedit`, `nano`) and c
 > You must obtain an API key from [SniffCat](https://sniffcat.com/api).
 
 ```js
-SniffCat_API_KEY: 'your-api-key' // Obtain from https://sniffcat.com/api
+SNIFFCAT_API_KEY: 'your-api-key' // Obtain from https://sniffcat.com/api
 ```
 
 #### 🖥️ Server Settings
@@ -149,7 +149,7 @@ AUTO_UPDATE_SCHEDULE: '0 14,16,20 * * *'  // Update schedule
 > [!WARNING]
 > Not recommended due to potential compatibility issues. Enable only if you actively monitor the server and are ready to intervene if problems occur.
 
-### 5. First Test Run
+### 4. First Test Run
 ```bash
 node .
 ```
@@ -179,16 +179,16 @@ eval "$(pm2 startup | grep sudo)"
 **Useful PM2 Commands:**
 ```bash
 pm2 logs                   # Show logs of all processes in real time
-pm2 logs tpot-SniffCat     # Show logs only for this script
+pm2 logs tpot-sniffcat     # Show logs only for this script
 pm2 list                   # Status of all running processes
-pm2 restart tpot-SniffCat  # Restart the script
-pm2 stop tpot-SniffCat     # Stop the script
-pm2 delete tpot-SniffCat   # Remove the script from PM2
+pm2 restart tpot-sniffcat  # Restart the script
+pm2 stop tpot-sniffcat     # Stop the script
+pm2 delete tpot-sniffcat   # Remove the script from PM2
 pm2 monit                  # Real-time process monitoring
 pm2 flush                  # Clear all logs
 ```
 
-### 6. Project Update
+### 5. Project Update
 To update the project to the latest version, run:
 ```bash
 npm run update
