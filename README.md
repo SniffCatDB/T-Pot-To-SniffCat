@@ -1,7 +1,7 @@
 # T-Pot to SniffCat
 [![Version](https://img.shields.io/github/package-json/v/SniffCatDB/T-Pot-To-SniffCat?label=version)](https://github.com/SniffCatDB/T-Pot-To-SniffCat)
 [![License: GPL v3](https://img.shields.io/github/license/SniffCatDB/T-Pot-To-SniffCat)](https://www.gnu.org/licenses/gpl-3.0)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D20.0.0-339933?logo=node.js&logoColor=white)](https://nodejs.org)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D20.19.0-339933?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Last Commit](https://img.shields.io/github/last-commit/SniffCatDB/T-Pot-To-SniffCat?label=last%20commit)](https://github.com/SniffCatDB/T-Pot-To-SniffCat/commits)
 [![Stars](https://img.shields.io/github/stars/SniffCatDB/T-Pot-To-SniffCat)](https://github.com/SniffCatDB/T-Pot-To-SniffCat/stargazers)
 
