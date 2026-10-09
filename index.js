@@ -8,6 +8,7 @@ const { axiosService } = require('./scripts/services/axios.js');
 const { saveBufferToFile, loadBufferFromFile, sendBulkReport, BULK_REPORT_BUFFER } = require('./scripts/services/bulk.js');
 const { loadReportedIPs, saveReportedIPs, isIPReportedRecently, markIPAsReported } = require('./scripts/services/cache.js');
 const ABUSE_STATE = require('./scripts/services/state.js');
+const { truncateComment } = require('./scripts/comment.js');
 const { refreshServerIPs, getServerIPs } = require('./scripts/services/ipFetcher.js');
 const { repoSlug, repoUrl } = require('./scripts/repo.js');
 const isSpecialPurposeIP = require('./scripts/isSpecialPurposeIP.js');
@@ -49,6 +50,7 @@ const checkRateLimit = async () => {
 
 const reportIp = async (honeypot, { srcIp, dpt = 'N/A', proto = 'N/A', timestamp }, categories, comment) => {
 	if (!srcIp) return logger.error(`${honeypot} -> Missing source IP (srcIp)`);
+	comment = truncateComment(comment);
 
 	// Check IP
 	const ips = getServerIPs();
@@ -122,7 +124,13 @@ const reportIp = async (honeypot, { srcIp, dpt = 'N/A', proto = 'N/A', timestamp
 				logger.success(`${honeypot} -> Queued ${srcIp} for bulk report due to rate limit`);
 			}
 		} else {
-			const failureMsg = `${honeypot} -> Failed to report ${srcIp} [${dpt}/${proto}]; ${err.response?.data?.errors ? JSON.stringify(err.response.data.errors) : err.message}`;
+			// The same payload would be rejected again, so put the IP on cooldown instead of retrying it on every flush
+			if (status === 422) {
+				markIPAsReported(srcIp);
+				await saveReportedIPs();
+			}
+
+			const failureMsg = `${honeypot} -> Failed to report ${srcIp} [${dpt}/${proto}]; ${err.response?.data?.errors ? JSON.stringify(err.response.data.errors) : err.response?.data?.message || err.message}`;
 			status === 429 ? logger.info(failureMsg) : logger.error(failureMsg);
 		}
 	}
