@@ -1,6 +1,7 @@
 {
   "name": "t-pot-to-sniffcat",
   "version": "0.3.3",
+  "private": true,
   "homepage": "https://github.com/SniffCatDB/T-Pot-To-SniffCat#readme",
   "bugs": {
     "url": "https://github.com/SniffCatDB/T-Pot-To-SniffCat/issues"
@@ -22,7 +23,7 @@
   "dependencies": {
     "@logdna/tail-file": "^5.0.2",
     "axios": "^1.21.1",
-    "cron": "^4.4.0",
+    "cron": "^4.4.1",
     "csv-parse": "^7.0.3",
     "csv-stringify": "^6.9.0",
     "form-data": "^4.0.6",
